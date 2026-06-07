@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Hari 1 - Aktivasi Potensi Tersembunyi | Bermain Jiwa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #faf9f6; color: #1c1e2a; scroll-behavior: smooth; }
+    h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+    .tab-btn { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.9rem 0.5rem; color: #9ca3af; border-bottom: 2px solid transparent; transition: 0.2s; white-space: nowrap; cursor: pointer; }
+    .tab-btn.active { color: #1f2937; border-bottom-color: #1f2937; background: transparent; }
+    .tab-content { display: none; animation: fadeIn 0.35s ease; }
+    .tab-content.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .card { background: #ffffff; border: 1px solid #ece4d7; border-radius: 28px; padding: 1.6rem; box-shadow: 0 10px 28px -8px rgba(0,0,0,0.02); transition: all 0.2s; }
+    .card:hover { box-shadow: 0 14px 32px -12px rgba(0,0,0,0.06); }
+    .input-field { width: 100%; border: 1px solid #e8dfd1; border-radius: 20px; padding: 0.85rem 1.2rem; font-size: 0.9rem; background: #fff; outline: none; transition: 0.2s; }
+    .input-field:focus { border-color: #1f2937; box-shadow: 0 0 0 3px rgba(31,41,55,0.05); }
+    .example-box { background: #f7f4ef; border-radius: 20px; padding: 0.9rem 1.1rem; font-size: 0.8rem; border-left: 3px solid #cfc6b4; color: #3b3f4c; }
+    .guide-box { background: #fefcf8; border: 1px solid #ece1d1; border-radius: 20px; padding: 1rem; font-size: 0.85rem; }
+    .btn-secondary { background: #f1efe9; border-radius: 60px; padding: 0.5rem 1.2rem; font-size: 0.7rem; font-weight: 600; transition: 0.2s; cursor: pointer; }
+    .btn-secondary:hover { background: #e3dbcd; }
+    .btn-primary { background: #1f2937; color: white; border-radius: 60px; padding: 0.5rem 1.2rem; font-size: 0.7rem; font-weight: 600; transition: 0.2s; cursor: pointer; }
+    .btn-primary:hover { background: #374151; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .timer-bg { background: #1f2937; border-radius: 2rem; }
+    .flashcard { perspective: 1000px; cursor: pointer; }
+    .flashcard-inner { position: relative; width: 100%; height: 140px; transition: transform 0.5s; transform-style: preserve-3d; border-radius: 24px; }
+    .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+    .flashcard-front, .flashcard-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; border-radius: 24px; padding: 1rem; text-align: center; }
+    .flashcard-front { background: #ffffff; border: 1px solid #ece1d1; }
+    .flashcard-back { background: #f5efe7; transform: rotateY(180deg); color: #2d3a3f; }
+    .progress-item { border-bottom: 1px dashed #e3dbce; padding: 0.7rem 0; }
+    .mindful-check { accent-color: #1f2937; width: 18px; height: 18px; margin-right: 12px; }
+    .slider { -webkit-appearance: none; width: 100%; height: 4px; background: #e8dfd1; border-radius: 4px; outline: none; }
+    .slider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: #1f2937; border-radius: 50%; cursor: pointer; }
+    @media print { body { background: white; } .tab-btn, .btn-secondary, .btn-primary, .no-print { display: none; } .tab-content { display: block !important; } .card { break-inside: avoid; } }
+  </style>
+</head>
+<body class="pt-6 pb-12 px-4 md:px-8">
+
+<div class="max-w-5xl mx-auto">
+  <!-- Header -->
+  <div class="text-center mb-8">
+    <div class="text-[0.6rem] tracking-[0.3rem] text-stone-400 uppercase mb-2">Bermain Jiwa • Master Manifestor</div>
+    <h1 class="serif italic text-4xl md:text-6xl font-semibold text-stone-800">Aktivasi Potensi Tersembunyi</h1>
+    <p class="text-sm text-stone-500 max-w-xl mx-auto mt-3">Hari 1 — 70% Kekuatan Jiwa yang Selama Ini Tidur, Kini Mulai Terjaga.</p>
+  </div>
+
+  <!-- Navigasi Tab -->
+  <div class="flex border-b border-stone-200 overflow-x-auto no-scrollbar sticky top-0 z-20 bg-[#faf9f6] pb-px mb-8 gap-2">
+    <button class="tab-btn active" onclick="openTab(event, 'panduan')">📝 Panduan</button>
+    <button class="tab-btn" onclick="openTab(event, 'materi')">📖 Materi</button>
+    <button class="tab-btn" onclick="openTab(event, 'workbook')">🔍 Audit</button>
+    <button class="tab-btn" onclick="openTab(event, 'praktik')">🧘 Praktik + Timer</button>
+    <button class="tab-btn" onclick="openTab(event, 'kartu')">🎴 Kartu Sadar</button>
+    <button class="tab-btn" onclick="openTab(event, 'jurnal')">🌙 Jurnal</button>
+    <button class="tab-btn" onclick="openTab(event, 'laporan')">📄 Laporan</button>
+  </div>
+
+  <!-- ================= TAB 1: PANDUAN ================= -->
+  <div id="panduan" class="tab-content active">
+    <div class="card">
+      <h2 class="serif text-2xl mb-2">📝 Panduan Penggunaan Suplemen Ini</h2>
+      <p class="text-stone-500 text-sm mb-4">Suplemen ini adalah laboratorium pengalaman Anda. Tidak perlu terburu-buru. Ikuti alurnya, isi dengan jujur, dan biarkan proses berbicara.</p>
+      
+      <div class="guide-box mb-5">
+        <strong class="block mb-2">📌 Cara menggunakan:</strong>
+        <ol class="list-decimal ml-5 space-y-1 text-sm">
+          <li><strong>Ikuti alur tab dari kiri ke kanan</strong> — Panduan → Materi → Audit → Praktik → Kartu → Jurnal → Laporan</li>
+          <li><strong>Baca pelan-pelan</strong>, jangan dikejar waktu. Ini proses refleksi, bukan lomba.</li>
+          <li><strong>Isi setiap kolom dengan jujur</strong> — tidak ada yang menilai kecuali diri sendiri.</li>
+          <li><strong>Gunakan tombol timer</strong> di tab Praktik untuk latihan meditasi/hening.</li>
+          <li><strong>Di akhir, buat laporan</strong> dan simpan sebagai catatan perjalanan 21 hari Anda.</li>
+        </ol>
+      </div>
+
+      <h3 class="font-semibold text-stone-700 mb-2">🖐️ Cara Manual (Tanpa Gawai Canggih)</h3>
+      <div class="example-box mb-4">
+        <p class="text-sm">Jika gawai terbatas atau Anda lebih nyaman dengan cara tradisional:</p>
+        <ul class="list-disc ml-5 text-sm mt-2 space-y-1">
+          <li>Siapkan <strong>buku catatan khusus</strong> untuk program 21 hari ini.</li>
+          <li>Tulis <strong>tanggal dan hari</strong> di setiap halaman.</li>
+          <li>Jawab pertanyaan-pertanyaan dari setiap tab di buku Anda.</li>
+          <li>Untuk latihan hening, cukup <strong>setel timer ponsel atau jam</strong> — lalu diam.</li>
+          <li>Simpan buku Anda sebagai <strong>jurnal spiritual</strong> yang bisa dibaca kembali.</li>
+        </ul>
+      </div>
+
+      <div class="bg-stone-50 p-4 rounded-xl text-sm italic text-stone-600">
+        💡 <strong>Contoh kalimat pembuka untuk ditulis di buku:</strong><br>
+        "Hari pertama. Saya memilih hadir. Saya memilih jujur. Saya membuka diri pada potensi yang selama ini tidur."
+      </div>
+
+      <div class="mt-5 text-center">
+        <button onclick="openTab(null, 'materi')" class="btn-primary px-6 py-2">✨ Mulai Perjalanan →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TAB 2: MATERI ================= -->
+  <div id="materi" class="tab-content">
+    <div class="card">
+      <h2 class="serif text-2xl mb-2">🧠 70% Kekuatan Jiwa yang Tidak Terpakai</h2>
+      <p class="text-stone-500 text-sm mb-4">Di tab ini Anda akan memahami konsep inti hari ini: tiga lapisan diri dan potensi spiritual yang tersembunyi.</p>
+
+      <div class="grid md:grid-cols-3 gap-4 mb-5">
+        <div class="bg-stone-50 p-3 rounded-xl text-center">
+          <div class="text-2xl mb-1">🧍</div>
+          <div class="font-semibold">Fisik</div>
+          <div class="text-xs text-stone-500">Tubuh, kesehatan, energi fisik</div>
+        </div>
+        <div class="bg-stone-50 p-3 rounded-xl text-center">
+          <div class="text-2xl mb-1">🧠</div>
+          <div class="font-semibold">Mental</div>
+          <div class="text-xs text-stone-500">Pikiran, logika, ingatan</div>
+        </div>
+        <div class="bg-stone-800 text-white p-3 rounded-xl text-center">
+          <div class="text-2xl mb-1">✨</div>
+          <div class="font-semibold">Spiritual</div>
+          <div class="text-xs text-stone-300">Kesadaran sejati, intuisi, koneksi</div>
+        </div>
+      </div>
+
+      <p class="text-stone-700 leading-relaxed mb-4">Kebanyakan manusia hanya mengakses <strong>30% kekuatan jiwa</strong> — yaitu lapisan fisik dan mental. Sisanya, <strong>70% potensi spiritual</strong>, tertidur karena tidak pernah dilatih, tidak dipercaya, atau terkubur kesibukan.</p>
+
+      <div class="guide-box mb-4">
+        <strong>✈️ Analogi "Pesawat dan Autopilot"</strong><br>
+        Anda memiliki pesawat jet canggih (kesadaran spiritual), tapi hanya menggunakannya untuk berjalan di landasan (pikiran dan tubuh). 30% yang Anda pakai adalah rodanya. 70% adalah sayap dan mesin — untuk terbang. Hari ini, kita belajar mengaktifkan autopilot.
+      </div>
+
+      <div class="example-box">
+        <strong>🌾 Cerita "Sumur Tua"</strong><br>
+        Di sebuah desa, ada sumur tua berair jernih. Penduduk tidak pernah menggunakannya karena tertutup semak. Suatu hari, seorang pemuda membersihkannya. Air mengalir deras. Seluruh desa akhirnya minum dari sumur yang selama ini ada di depan mata.<br><br>
+        <strong>Anda adalah sumur itu. 70% kekuatan jiwa adalah air jernih yang menunggu dibersihkan.</strong>
+      </div>
+
+      <div class="mt-5 text-center">
+        <button onclick="openTab(null, 'workbook')" class="btn-secondary">🔍 Lanjut ke Audit →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TAB 3: AUDIT (WORKBOOK) ================= -->
+  <div id="workbook" class="tab-content">
+    <div class="card">
+      <h2 class="serif text-2xl mb-1">🔍 Workbook: Aktivasi Potensi Tersembunyi</h2>
+      <p class="text-stone-500 text-sm mb-4">Di tab ini Anda akan memetakan pemahaman awal dan merekam pengalaman latihan pertama.</p>
+
+      <!-- Pemetaan awal -->
+      <div class="mb-6">
+        <h3 class="font-semibold text-stone-700 mb-2">📋 Aktivitas A: Pemetaan Pemahaman Awal</h3>
+        <div class="space-y-3">
+          <div>
+            <label class="text-sm font-medium">1. Sebelum program ini, apakah Anda pernah mendengar tentang "kekuatan spiritual" atau "potensi tersembunyi"?</label>
+            <select id="pengalamanAwal" class="input-field mt-1 text-sm">
+              <option value="">Pilih jawaban...</option>
+              <option>Tidak pernah</option>
+              <option>Pernah, tapi tidak percaya</option>
+              <option>Pernah dan penasaran</option>
+              <option>Sudah mempraktikkan</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-sm font-medium">2. Dalam skala 1-10, seberapa besar Anda percaya bahwa manusia punya potensi di luar fisik dan pikiran?</label>
+            <input id="skorPercaya" type="number" min="1" max="10" class="input-field mt-1 w-24" placeholder="1-10">
+          </div>
+          <div>
+            <label class="text-sm font-medium">3. Apa pengalaman spiritual paling kuat yang pernah Anda alami (jika ada)?</label>
+            <textarea id="pengalamanSpiritual" class="input-field mt-1 h-20" placeholder="Contoh: pernah merasakan firasat yang terbukti, mimpi yang menjadi nyata, atau rasa tenang di luar biasa..."></textarea>
+          </div>
+          <div>
+            <label class="text-sm font-medium">4. Apa tujuan Anda mengikuti program ini?</label>
+            <textarea id="tujuanProgram" class="input-field mt-1 h-20" placeholder="Contoh: ingin lebih tenang, lebih percaya diri, bisa memanifestasikan keinginan..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Latihan 3 langkah -->
+      <div class="mb-6">
+        <h3 class="font-semibold text-stone-700 mb-2">🧘 Aktivitas B: Latihan 3 Langkah (Micro-task)</h3>
+        <p class="text-xs text-stone-500 mb-3">Lakukan latihan ini di tempat tenang selama 10-15 menit. Tulis pengalaman Anda setelahnya.</p>
+        
+        <div class="space-y-4">
+          <div class="border-l-3 border-stone-300 pl-3">
+            <label class="font-medium text-sm">Langkah 1: Heningkan Diri (5 menit)</label>
+            <textarea id="pengalamanHening" class="input-field mt-1 h-24" placeholder="Tulis apa yang Anda rasakan saat duduk diam fokus napas... Apakah pikiran melayang? Apakah ada jeda hening?"></textarea>
+            <div class="example-box mt-1 text-xs">Contoh: "Awalnya pikiran sibuk, tapi setelah beberapa menit, ada jeda hening singkat. Rasanya aneh tapi menenangkan."</div>
+          </div>
+          <div class="border-l-3 border-stone-300 pl-3">
+            <label class="font-medium text-sm">Langkah 2: Rasakan Energi di Telapak Tangan (5 menit)</label>
+            <textarea id="pengalamanEnergi" class="input-field mt-1 h-24" placeholder="Apakah Anda merasakan hangat, kesemutan, atau seperti ada bantalan udara di antara telapak tangan?"></textarea>
+            <div class="example-box mt-1 text-xs">Contoh: "Saya merasakan seperti ada bola energi tipis di sela jari. Awalnya ragu, tapi setelah digerakkan perlahan, sensasinya jelas."</div>
+          </div>
+          <div class="border-l-3 border-stone-300 pl-3">
+            <label class="font-medium text-sm">Langkah 3: Bertanya pada Diri (5 menit)</label>
+            <textarea id="pengalamanBertanya" class="input-field mt-1 h-24" placeholder="Setelah bertanya 'Apa yang sebenarnya saya inginkan?', apa yang muncul? Perasaan, kata, gambar, atau kosong?"></textarea>
+            <div class="example-box mt-1 text-xs">Contoh: "Tidak ada jawaban langsung. Tiba-tiba teringat mimpi masa kecil. Mungkin itu petunjuk?"</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Surat untuk diri -->
+      <div class="mb-4">
+        <h3 class="font-semibold text-stone-700 mb-2">✉️ Aktivitas C: Surat untuk Diri di Hari ke-21</h3>
+        <textarea id="suratMasaDepan" class="input-field h-28" placeholder="Tulis surat pendek untuk diri Anda 20 hari dari sekarang. Apa yang ingin Anda capai? Apa yang ingin Anda rasakan?&#10;&#10;Contoh: 'Halo, Diriku di hari ke-21. Aku harap kamu sudah lebih tenang, lebih percaya diri, dan mulai percaya pada kekuatan di dalam dirimu...'"></textarea>
+      </div>
+
+      <div class="example-box text-sm">
+        <strong>💡 Satu hal yang paling membekas dari hari ini:</strong><br>
+        <textarea id="insightWorkbook" class="input-field mt-2 h-20" placeholder="Tulis satu kalimat tentang pelajaran paling berkesan..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TAB 4: PRAKTIK + TIMER ================= -->
+  <div id="praktik" class="tab-content">
+    <div class="card">
+      <h2 class="serif text-2xl mb-2">🧘 Praktik Hening + Timer</h2>
+      <p class="text-stone-500 text-sm mb-4">Di tab ini Anda akan melakukan latihan hening dengan panduan durasi. Pilih waktu, mulai timer, dan praktik.</p>
+
+      <div class="flex flex-wrap gap-3 mb-5">
+        <button onclick="setDuration(5)" class="btn-secondary">🌱 5 menit (Singkat)</button>
+        <button onclick="setDuration(10)" class="btn-secondary">🍃 10 menit (Sedang)</button>
+        <button onclick="setDuration(15)" class="btn-secondary">🌿 15 menit (Panjang)</button>
+      </div>
+
+      <div id="practiceInstruction" class="example-box mb-5 text-sm">
+        Klik salah satu durasi di atas. Instruksi akan muncul di sini.
+      </div>
+
+      <!-- Timer -->
+      <div class="grid md:grid-cols-2 gap-4 mb-4">
+        <div><label class="text-xs font-semibold">Menit</label><input id="timerMin" type="number" value="5" class="input-field mt-1"></div>
+        <div><label class="text-xs font-semibold">Detik</label><input id="timerSec" type="number" value="0" class="input-field mt-1"></div>
+      </div>
+
+      <div class="timer-bg text-white rounded-3xl p-6 text-center">
+        <div class="text-5xl md:text-6xl font-light mb-4" id="timerDisplay">05:00</div>
+        <div class="flex justify-center gap-3 flex-wrap">
+          <button onclick="toggleTimer()" id="timerBtn" class="px-6 py-2 bg-white text-black rounded-full text-xs font-bold">Mulai</button>
+          <button onclick="resetTimer()" class="px-6 py-2 border border-white/30 rounded-full text-xs">Reset</button>
+        </div>
+        <p class="text-stone-300 text-[11px] mt-4">Timer akan berbunyi lembut saat selesai.</p>
+      </div>
+
+      <!-- Catatan setelah praktik -->
+      <div class="mt-5">
+        <label class="font-semibold text-sm">📝 Catatan setelah praktik:</label>
+        <textarea id="catatanPraktik" class="input-field mt-2 h-24" placeholder="Tulis apa yang Anda rasakan setelah latihan hening dengan timer..."></textarea>
+        <div class="example-box mt-2 text-xs">Contoh: "Setelah 10 menit, kepala terasa lebih ringan. Ada kedamaian yang aneh. Pikiran tidak sekalipun melayang ke pekerjaan."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TAB 5: KARTU SADAR ================= -->
+  <div id="kartu" class="tab-content">
+    <div class="card">
+      <h2 class="serif text-2xl mb-1">🎴 Kartu Sadar</h2>
+      <p class="text-stone-500 text-sm mb-5">Klik kartu untuk membaliknya. Pelajari satu per satu, biarkan meresap.</p>
+      
+      <div class="grid md:grid-cols-2 gap-5">
+        <!-- Kartu 1 -->
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front font-medium">🔹 Tiga Lapisan Diri</div>
+            <div class="flashcard-back text-sm">Fisik (tubuh) → Mental (pikiran) → Spiritual (kesadaran). Kebanyakan orang hanya hidup di dua lapisan pertama. Padahal kekuatan sejati ada di lapisan ketiga.</div>
+          </div>
+        </div>
+        <!-- Kartu 2 -->
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front font-medium">⚡ Mengapa 70% Tidak Terpakai?</div>
+            <div class="flashcard-back text-sm">1. Tidak pernah diajari. 2. Tidak percaya. 3. Terlalu sibuk. Tiga penghalang ini membuat potensi spiritual tertidur.</div>
+          </div>
+        </div>
+        <!-- Kartu 3 -->
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front font-medium">✋ Energi di Telapak Tangan</div>
+            <div class="flashcard-back text-sm">Sensasi hangat/kesemutan di sela jari adalah bukti bio-energi atau energi kehidupan. Ini nyata, bisa dirasakan, dan dimiliki semua orang.</div>
+          </div>
+        </div>
+        <!-- Kartu 4 -->
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front font-medium">❓ Kekuatan Bertanya</div>
+            <div class="flashcard-back text-sm">Bertanya dengan tulus membuka pintu komunikasi dengan alam bawah sadar dan spiritual. Jawaban tak selalu kata — bisa berupa perasaan, firasat, atau 'kebetulan' yang menuntun.</div>
+          </div>
+        </div>
+        <!-- Kartu 5 -->
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front font-medium">🌊 Filosofi "Eluh"</div>
+            <div class="flashcard-back text-sm">Dalam tradisi Nusantara, eluh adalah semangat kehidupan yang mengalir dalam diri. Terhubung dengan eluh = hidup mengalir, penuh makna, selalu ada jalan.</div>
+          </div>
+        </div>
+        <!-- Kartu 6 -->
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front font-medium">✈️ Pesawat vs Roda</div>
+            <div class="flashcard-back text-sm">Anda punya pesawat jet (spiritual) tapi hanya pakai rodanya (fisik+mental). 30% untuk jalan di tanah. 70% sayap dan mesin — untuk terbang. Jangan hanya jalan.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TAB 6: JURNAL ================= -->
+  <div id="jurnal" class="tab-content">
+    <div class="card">
+      <h2 class="serif text-2xl mb-1">🌙 Jurnal Refleksi Hari 1</h2>
+      <p class="text-stone-500 text-sm mb-4">Isi dengan jujur. Tidak ada jawaban salah. Yang penting Anda hadir dan merekam.</p>
+
+      <div class="mb-5">
+        <label class="font-medium text-sm">📊 Skor Koneksi (Seberapa kuat Anda merasakan energi/sensasi baru hari ini?)</label>
+        <input type="range" id="skorKoneksi" class="slider w-full mt-2" min="1" max="10" value="5">
+        <div class="flex justify-between text-xs text-stone-400 mt-1"><span>1 (tidak merasakan)</span><span>5</span><span>10 (sangat kuat)</span></div>
+        <div class="text-center text-sm mt-1">Skor: <span id="skorKoneksiValue">5</span>/10</div>
+      </div>
+
+      <div class="mb-5">
+        <label class="font-medium text-sm">🔥 Skor Komitmen (Seberapa yakin Anda melanjutkan program ini?)</label>
+        <input type="range" id="skorKomitmen" class="slider w-full mt-2" min="1" max="10" value="7">
+        <div class="flex justify-between text-xs text-stone-400 mt-1"><span>1 (ragu)</span><span>5</span><span>10 (sangat yakin)</span></div>
+        <div class="text-center text-sm mt-1">Skor: <span id="skorKomitmenValue">7</span>/10</div>
+      </div>
+
+      <div class="mb-5">
+        <label class="font-medium text-sm">💡 Insight terbesar hari ini:</label>
+        <textarea id="insightJurnal" class="input-field mt-1 h-28" placeholder="Contoh: 'Saya baru sadar bahwa selama ini saya terlalu sibuk untuk diam. Jeda hening 5 menit terasa seperti hadiah.'&#10;&#10;Atau: 'Saya merasakan energi di telapak tangan! Awalnya saya kira hanya imajinasi, tapi ternyata nyata.'"></textarea>
+      </div>
+
+      <div class="example-box text-sm">
+        <strong>📝 Pertanyaan pancingan untuk Anda:</strong><br>
+        - Latihan mana yang paling berkesan? (hening / energi tangan / bertanya)<br>
+        - Apakah ada momen di mana Anda merasakan "sesuatu yang berbeda"?<br>
+        - Bagian mana yang paling sulit? Mengapa?
+      </div>
+
+      <div class="mt-4">
+        <label class="font-medium text-sm">📌 Komitmen untuk Hari 2:</label>
+        <textarea id="komitmenHari2" class="input-field mt-1 h-20" placeholder="Contoh: 'Saya akan mengulang latihan hening 3 menit di pagi hari sebelum cek ponsel.'"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TAB 7: LAPORAN ================= -->
+  <div id="laporan" class="tab-content">
+    <div class="card mb-5">
+      <h2 class="serif text-2xl text-center mb-2">📄 Ringkasan & Laporan Hari 1</h2>
+      <p class="text-center text-sm text-stone-500 mb-4">Preview laporan di bawah ini. Simpan, bagikan, atau cetak sebagai bukti perjalanan Anda.</p>
+      
+      <div id="reportPreview" class="bg-stone-50 p-4 rounded-2xl text-sm whitespace-pre-wrap font-mono border mb-4"></div>
+      
+      <div class="flex flex-wrap justify-center gap-3">
+        <button onclick="copyReport()" class="bg-stone-800 text-white px-5 py-2 rounded-full text-xs font-semibold">📋 Salin Teks</button>
+        <button onclick="downloadReport()" class="border border-stone-800 px-5 py-2 rounded-full text-xs font-semibold">⬇️ Unduh TXT</button>
+        <button onclick="sendWhatsApp()" class="bg-green-700 text-white px-5 py-2 rounded-full text-xs font-semibold">📱 Kirim WA</button>
+        <button onclick="window.print()" class="border border-stone-800 px-5 py-2 rounded-full text-xs font-semibold">🖨️ Cetak PDF</button>
+      </div>
+    </div>
+
+    <!-- Tracking Checklist -->
+    <div class="card mb-5">
+      <h3 class="serif text-xl mb-3">✅ Tracking Progress Hari Ini</h3>
+      <div class="space-y-2">
+        <div class="flex items-center"><input type="checkbox" id="checkMateri" class="mindful-check"> <span>Membaca materi tiga lapisan diri</span></div>
+        <div class="flex items-center"><input type="checkbox" id="checkWorkbook" class="mindful-check"> <span>Mengisi workbook (pemetaan awal)</span></div>
+        <div class="flex items-center"><input type="checkbox" id="checkLatihan" class="mindful-check"> <span>Melakukan 3 langkah latihan (hening, energi, bertanya)</span></div>
+        <div class="flex items-center"><input type="checkbox" id="checkTimer" class="mindful-check"> <span>Praktik hening dengan timer</span></div>
+        <div class="flex items-center"><input type="checkbox" id="checkKartu" class="mindful-check"> <span>Mempelajari kartu sadar</span></div>
+        <div class="flex items-center"><input type="checkbox" id="checkJurnal" class="mindful-check"> <span>Mengisi jurnal dan skor</span></div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="card">
+      <h3 class="serif text-xl mb-2">⏳ Timeline Belajar Hari Ini</h3>
+      <div class="space-y-2 text-sm">
+        <div>🌅 <strong>Pagi:</strong> Membaca konsep 70% kekuatan jiwa</div>
+        <div>🌤️ <strong>Siang:</strong> Melakukan 3 langkah latihan (hening, energi, bertanya)</div>
+        <div>🌙 <strong>Malam:</strong> Refleksi, jurnal, dan menyusun laporan</div>
+      </div>
+      <div class="mt-4 pt-3 border-t border-stone-100 text-center">
+        <button onclick="generateReportAndScroll()" class="btn-primary px-6 py-2">✨ Selesai & Simpan Laporan</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mt-14 pt-6 border-t border-stone-200 text-center">
+    <p class="text-[0.6rem] tracking-[0.3em] text-stone-400">© 2026 Bermain Jiwa - 21 Hari Arsitek Realitas</p>
+  </footer>
+</div>
+
+<script>
+  // TAB FUNCTION
+  function openTab(evt, tabId) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    if(evt && evt.currentTarget) evt.currentTarget.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // TIMER
+  let timerInterval = null, isRunning = false, timeLeft = 300;
+  const timerDisplay = document.getElementById('timerDisplay');
+  const timerBtn = document.getElementById('timerBtn');
+  const timerMinInput = document.getElementById('timerMin');
+  const timerSecInput = document.getElementById('timerSec');
+
+  function getManualTime() { return (parseInt(timerMinInput?.value) || 0)*60 + (parseInt(timerSecInput?.value) || 0); }
+  function updateDisplay() { let m = Math.floor(timeLeft/60), s = timeLeft%60; if(timerDisplay) timerDisplay.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`; }
+  function toggleTimer() {
+    if(!isRunning) {
+      if(!timerInterval) timeLeft = getManualTime();
+      timerInterval = setInterval(() => { 
+        if(timeLeft > 0) { timeLeft--; updateDisplay(); } 
+        else { clearInterval(timerInterval); timerInterval=null; isRunning=false; if(timerBtn) timerBtn.textContent='Mulai'; playAlarm(); alert('✨ Waktu selesai. Tarik napas, akhiri latihan dengan kesadaran penuh.'); } 
+      }, 1000);
+      if(timerBtn) timerBtn.textContent = 'Jeda'; 
+      isRunning = true;
+    } else { 
+      clearInterval(timerInterval); 
+      timerInterval = null; 
+      if(timerBtn) timerBtn.textContent = 'Mulai'; 
+      isRunning = false;
+    }
+  }
+  function resetTimer() { 
+    clearInterval(timerInterval); 
+    timerInterval = null; 
+    isRunning = false; 
+    timeLeft = getManualTime(); 
+    updateDisplay(); 
+    if(timerBtn) timerBtn.textContent = 'Mulai'; 
+  }
+  function playAlarm() { 
+    try { 
+      let ctx = new (window.AudioContext || window.webkitAudioContext)(); 
+      let o = ctx.createOscillator(); 
+      let g = ctx.createGain(); 
+      o.type = 'sine'; 
+      o.frequency.value = 880; 
+      g.gain.setValueAtTime(0.2, ctx.currentTime); 
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+1); 
+      o.connect(g).connect(ctx.destination); 
+      o.start(); 
+      o.stop(ctx.currentTime+1.2); 
+    } catch(e) {} 
+  }
+  function setDuration(minutes) { 
+    if(timerMinInput) timerMinInput.value = minutes; 
+    if(timerSecInput) timerSecInput.value = 0; 
+    resetTimer(); 
+    const div = document.getElementById('practiceInstruction');
+    if(div) {
+      if(minutes === 5) div.innerHTML = '🌱 Latihan 5 menit: Duduk tegak, pejamkan mata. Fokus pada napas. Biarkan pikiran datang dan pergi tanpa melawan. Jika melayang, kembalikan ke napas. Cukup 5 menit keheningan.';
+      else if(minutes === 10) div.innerHTML = '🍃 Latihan 10 menit: Duduk nyaman. Tarik napas dalam 3x. Setelah tenang, rasakan tubuh dari ujung kaki hingga kepala. Amati tanpa menilai. Biarkan keheningan berbicara.';
+      else div.innerHTML = '🌿 Latihan 15 menit: Duduk dengan punggung tegak. Mulai dengan 5 napas dalam. Kemudian biarkan napas alami. Jika muncul pikiran, amati lalu lepaskan. Ini waktu untuk berkenalan dengan diri yang lebih dalam.';
+    }
+  }
+
+  // SLIDER SKOR
+  const skorKoneksi = document.getElementById('skorKoneksi');
+  const skorKoneksiValue = document.getElementById('skorKoneksiValue');
+  const skorKomitmen = document.getElementById('skorKomitmen');
+  const skorKomitmenValue = document.getElementById('skorKomitmenValue');
+  if(skorKoneksi) skorKoneksi.addEventListener('input', () => { if(skorKoneksiValue) skorKoneksiValue.innerText = skorKoneksi.value; });
+  if(skorKomitmen) skorKomitmen.addEventListener('input', () => { if(skorKomitmenValue) skorKomitmenValue.innerText = skorKomitmen.value; });
+
+  // LAPORAN
+  function generateReport() {
+    return `📋 LAPORAN HARI 1 - AKTIVASI POTENSI TERSEMBUNYI
+════════════════════════════════════════════
+📅 Tanggal: ${new Date().toLocaleDateString('id-ID')}
+
+🔍 PEMETAAN AWAL:
+- Pengalaman sebelumnya: ${document.getElementById('pengalamanAwal')?.value || '-'}
+- Tingkat kepercayaan potensi spiritual: ${document.getElementById('skorPercaya')?.value || '-'}/10
+
+🧘 PENGALAMAN LATIHAN:
+- Langkah 1 (Hening): ${document.getElementById('pengalamanHening')?.value?.substring(0, 100) || '-'}
+- Langkah 2 (Energi tangan): ${document.getElementById('pengalamanEnergi')?.value?.substring(0, 100) || '-'}
+- Langkah 3 (Bertanya): ${document.getElementById('pengalamanBertanya')?.value?.substring(0, 100) || '-'}
+
+📊 SKOR HARI INI:
+- Skor Koneksi: ${document.getElementById('skorKoneksi')?.value || '5'}/10
+- Skor Komitmen: ${document.getElementById('skorKomitmen')?.value || '7'}/10
+
+💡 INSIGHT:
+${document.getElementById('insightJurnal')?.value || '-'}
+
+📌 KOMITMEN HARI 2:
+${document.getElementById('komitmenHari2')?.value || '-'}
+
+✅ PROGRESS CHECKLIST:
+- Materi: ${document.getElementById('checkMateri')?.checked ? '✓' : '✗'}
+- Workbook: ${document.getElementById('checkWorkbook')?.checked ? '✓' : '✗'}
+- 3 Langkah Latihan: ${document.getElementById('checkLatihan')?.checked ? '✓' : '✗'}
+- Timer Praktik: ${document.getElementById('checkTimer')?.checked ? '✓' : '✗'}
+- Kartu Sadar: ${document.getElementById('checkKartu')?.checked ? '✓' : '✗'}
+- Jurnal: ${document.getElementById('checkJurnal')?.checked ? '✓' : '✗'}
+
+✨ "Langkah pertama sudah diambil. 70% kekuatan jiwa mulai terjaga."
+
+— Bermain Jiwa | 21 Hari Arsitek Realitas —`;
+  }
+
+  function updatePreview() {
+    const preview = document.getElementById('reportPreview');
+    if(preview) preview.innerText = generateReport();
+  }
+  function copyReport() { navigator.clipboard.writeText(generateReport()); alert('📋 Laporan disalin ke clipboard.'); }
+  function downloadReport() { 
+    let blob = new Blob([generateReport()], {type: 'text/plain'}); 
+    let a = document.createElement('a'); 
+    a.href = URL.createObjectURL(blob); 
+    a.download = `Hari1_Laporan_${new Date().toISOString().slice(0,10)}.txt`; 
+    a.click(); 
+  }
+  function sendWhatsApp() { window.open(`https://wa.me/?text=${encodeURIComponent(generateReport())}`, '_blank'); }
+  function generateReportAndScroll() { updatePreview(); openTab(null, 'laporan'); window.scrollTo({ top: document.getElementById('laporan').offsetTop - 80, behavior: 'smooth' }); }
+
+  setInterval(updatePreview, 500);
+  updatePreview();
+  resetTimer();
+</script>
+</body>
+</html>
